@@ -238,7 +238,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
             ctx.fillStyle = avatarGrad;
             ctx.fill();
 
-            if (profile.avatarUrl) {
+            if (resolvedAvatarUrl) {
               const img = new Image();
               img.crossOrigin = 'anonymous';
               img.onload = () => {
@@ -254,7 +254,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
                 drawPlaceholderAvatar(ax, ay, avatarSize);
                 resolve();
               };
-              img.src = profile.avatarUrl;
+              img.src = resolvedAvatarUrl;
             } else {
               drawPlaceholderAvatar(ax, ay, avatarSize);
               resolve();
