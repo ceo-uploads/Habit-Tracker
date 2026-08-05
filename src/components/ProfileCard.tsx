@@ -275,7 +275,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
         ctx.fillText(`FLIGHT INITIATED: ${new Date(profile.joinedDate).toLocaleDateString()}`, 400, 395);
 
         // 7. Render Streak achievements list (max 5 active habits)
-        const enabledStreaks = (Object.values(streaks) as StreakState[]).filter((s) => s.currentStreak >= 0);
+        const enabledStreaks = (Object.values(streaks) as StreakState[]).filter((s) => profile.selectedHabits && profile.selectedHabits.includes(s.habitId));
         let listY = 460;
 
         // Draw horizontal separator
@@ -407,7 +407,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
         }
 
         const file = new File([blob], `${profile.name.replace(/\s+/g, '_')}_space_pass.png`, { type: 'image/png' });
-        const enabledStreaks = (Object.values(streaks) as StreakState[]).filter((s) => s.currentStreak >= 0);
+        const enabledStreaks = (Object.values(streaks) as StreakState[]).filter((s) => profile.selectedHabits && profile.selectedHabits.includes(s.habitId));
         const totalStreakDays = enabledStreaks.reduce((sum, s) => sum + (s.currentStreak || 0), 0);
 
         const shareTitle = profile.language === 'en' ? 'My Space Recovery Pass' : 'আমার স্পেস রিকভারি পাস';
@@ -456,7 +456,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   };
 
   // Calculations for share details
-  const enabledStreaks = (Object.values(streaks) as StreakState[]).filter((s) => s.currentStreak >= 0);
+  const enabledStreaks = (Object.values(streaks) as StreakState[]).filter((s) => profile.selectedHabits && profile.selectedHabits.includes(s.habitId));
   const totalStreakDays = enabledStreaks.reduce((sum, s) => sum + (s.currentStreak || 0), 0);
   const shareText = profile.language === 'en'
     ? `I have maintained self-control for ${totalStreakDays} streak days! Join me on the Vanguard 3D Streak Tracker and build pure habits.`
@@ -536,7 +536,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
           {/* Active Sectors lists */}
           <div className="flex flex-col space-y-2 flex-grow justify-center relative z-10" style={{ transform: 'translateZ(25px)' }}>
             {(Object.values(streaks) as StreakState[])
-              .filter((s) => s.currentStreak >= 0)
+              .filter((s) => profile.selectedHabits && profile.selectedHabits.includes(s.habitId))
               .slice(0, 3)
               .map((streak) => {
                 const config = habitConfigs[streak.habitId];
