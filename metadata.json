@@ -1,0 +1,6 @@
+{
+  "name": "3D Rocket Streak Tracker",
+  "description": "An interactive 3D rocket streak tracker to break habits like smoking, porn, drugs, and alcohol. Featuring offline SQLite storage, custom challenges, daily fingerprint check-in with rocket launch animation, detailed day-by-day health reports in English & Bangla, downloadable 3D social cards, sound effects, and voice read-out.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
